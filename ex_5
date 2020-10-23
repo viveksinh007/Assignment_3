@@ -1,0 +1,46 @@
+
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class ex5 extends JApplet {
+
+    
+    int x, y, z;  
+    JPanel p1 = new JPanel();
+    JPanel p2 = new JPanel();
+    JScrollBar s1 = new JScrollBar(0,0,5,0,260);
+    JScrollBar s2 = new JScrollBar(0,0,5,0,260);
+    JScrollBar s3 = new JScrollBar(0,0,5,0,260);
+    public void init()
+    {
+        setLayout(new BorderLayout());
+        p1.setLayout(new GridLayout(1,3));
+        s1.addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent ae) {
+               Color c = new Color(s1.getValue(),s2.getValue(),s3.getValue());
+               p2.setBackground(c);
+            }
+        });
+        s2.addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent ae) {
+                Color c = new Color(s1.getValue(),s2.getValue(),s3.getValue());
+               p2.setBackground(c);
+            }
+        });
+        s3.addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent ae) {
+               Color c = new Color(s1.getValue(),s2.getValue(),s3.getValue());
+               p2.setBackground(c);
+            }
+        });
+        p1.add(s1);p1.add(s2);p1.add(s3);
+        add(p1,BorderLayout.NORTH);
+        add(p2,BorderLayout.CENTER);
+     }
+}

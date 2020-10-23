@@ -1,0 +1,89 @@
+
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class ex4 extends JApplet {
+    
+    JFrame fr = new JFrame();
+    List l1 = new List(); 
+    List l2 = new List(); 
+    JButton b1 = new JButton(" < ");
+    JButton b2 = new JButton(" > ");
+    JButton b3 = new JButton("<<");
+    JButton b4 = new JButton(">>");
+  
+    public void init() 
+    {
+        l1.add("i1");
+        l1.add("i2");
+        l1.add("i3");
+        l1.add("i4");
+        JFrame fr = new JFrame();
+        fr.setLayout(new GridLayout(1,3,5,5));
+        fr.setSize(700,300);
+        JPanel p1 = new JPanel();  
+        JPanel p2 = new JPanel();  
+        JPanel p3 = new JPanel();  
+        
+        p1.add(l1);
+     
+        p2.setLayout(new FlowLayout());
+        p2.add(b1);
+        p2.add(b2);
+        p2.add(b3);
+        p2.add(b4);      
+     
+        p3.add(l2);
+        
+        fr.add(p1);
+        fr.add(p2);
+        fr.add(p3);
+             
+        fr.setVisible(true);
+        
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.out.println(l2.getSelectedItem());
+                 l1.add(l2.getSelectedItem());
+                l2.remove(l2.getSelectedItem());
+            }
+        });
+        
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                l2.add(l1.getSelectedItem());
+                l1.remove(l1.getSelectedItem());
+            }
+        });
+        
+        b3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) 
+            {
+                for (int i = 0; i < l2.getItems().length ; i++) 
+                {
+                   l1.add(l1.getItem(i));
+                }
+                l2.removeAll();
+            }
+        });
+        
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) 
+            {
+                for (int i = 0; i < l1.getItems().length ; i++) 
+                {
+                   l2.add(l1.getItem(i));
+                }
+                l1.removeAll();
+            }
+        });
+    }
+
+}
+
